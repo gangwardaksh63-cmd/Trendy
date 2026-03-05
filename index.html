@@ -1,0 +1,124 @@
+<!DOCTYPE html><html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Trendy Store</title>
+<style>
+body{font-family:Arial, sans-serif;background:#050505;color:white;margin:0;overflow-x:hidden}canvas#particles{ position:fixed; top:0;left:0;width:100%;height:100%;z-index:-1 }
+
+#loader{ position:fixed;top:0;left:0;width:100%;height:100%; background:black;display:flex;justify-content:center;align-items:center; font-size:28px;color:#00ff9c;text-shadow:0 0 10px #00ff9c,0 0 25px #00ff9c;z-index:9999 }
+
+header{padding:25px;text-align:center;background:#111;box-shadow:0 0 20px #00ff9c} header h1{color:#00ff9c;text-shadow:0 0 10px #00ff9c,0 0 30px #00ff9c;font-size:40px}
+
+.products{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:20px;padding:25px}
+
+.card{background:#141414;border-radius:12px;padding:18px;text-align:center;box-shadow:0 0 10px #00ff9c33;transition:0.3s} .card:hover{transform:scale(1.05);box-shadow:0 0 20px #00ff9c}
+
+button{margin-top:10px;padding:10px 15px;border:none;border-radius:8px;background:#00ff9c;color:black;font-weight:bold;cursor:pointer;box-shadow:0 0 10px #00ff9c,0 0 20px #00ff9c}
+
+.reviews{padding:30px;text-align:center} .review-box{background:#141414;margin:10px auto;padding:15px;border-radius:10px;max-width:420px;box-shadow:0 0 10px #00ff9c33}
+
+.order-section{text-align:center;padding:50px;background:#0f0f0f;box-shadow:0 0 30px #00ff9c inset} .order-section h2{color:#00ff9c;font-size:34px;text-shadow:0 0 10px #00ff9c} .order-box{margin-top:20px;font-size:20px;line-height:35px}
+
+#selectedProduct{margin-top:20px;color:#00ff9c;font-weight:bold}
+
+#urgency{margin-top:10px;color:#ff4d4d;font-weight:bold}
+
+#liveOrder{position:fixed;bottom:20px;left:20px;background:#141414;padding:12px 18px;border-radius:10px;box-shadow:0 0 15px #00ff9c;font-size:14px;display:none}
+
+footer{text-align:center;padding:20px;background:#111;box-shadow:0 0 20px #00ff9c}
+
+a{color:#00ff9c} </style>
+
+</head>
+<body><canvas id="particles"></canvas>
+
+<div id="loader">Loading Trendy Store...</div>
+<div id="liveOrder"></div><header>
+<h1>Trendy Store</h1>
+<p>Editing • Gaming Services • Minecraft</p>
+</header><section class="products"><div class="card"><h3>YouTube Thumbnail</h3><p>₹49</p><button onclick="order('Thumbnail')">Order Now</button></div>
+<div class="card"><h3>Logo Design</h3><p>₹79</p><button onclick="order('Logo')">Order Now</button></div>
+<div class="card"><h3>YouTube Banner</h3><p>₹69</p><button onclick="order('Banner')">Order Now</button></div>
+<div class="card"><h3>Video Editing</h3><p>₹99</p><button onclick="order('Video Editing')">Order Now</button></div>
+<div class="card"><h3>Free Fire Sensitivity</h3><p>₹29</p><button onclick="order('Sensitivity')">Order Now</button></div>
+<div class="card"><h3>Free Fire Headshot Config</h3><p>₹39</p><button onclick="order('Headshot Config')">Order Now</button></div>
+<div class="card"><h3>Mobile Optimization</h3><p>₹49</p><button onclick="order('Mobile Optimization')">Order Now</button></div>
+<div class="card"><h3>Minecraft Premium Account</h3><p>₹199</p><button onclick="order('Minecraft Premium')">Order Now</button></div></section><section class="reviews">
+<h2 style="color:#00ff9c">Customer Reviews</h2>
+<div class="review-box">⭐⭐⭐⭐⭐ <br><b>Badmoss_nub</b> :- nice work</div>
+<div class="review-box">⭐⭐⭐⭐⭐ <br><b>Lakshyaji</b> :- 10/10 very cheap prices and fast reply nice !</div>
+<div class="review-box">⭐⭐⭐⭐⭐ <br><b>RDX_Gamer</b> :- fast delivery thanks bro</div>
+<div class="review-box">⭐⭐⭐⭐⭐ <br><b>ShadowYT</b> :- best thumbnail service</div>
+<div class="review-box">⭐⭐⭐⭐⭐ <br><b>OPHunter</b> :- cheap and trusted seller</div>
+</section><section id="order" class="order-section">
+<h2>Order Here</h2><div id="selectedProduct">Select a product first</div>
+<div id="urgency"></div><div class="order-box">
+Discord : <b>ng_daksh</b><br>
+Instagram : <b>fr_d4k5h</b><br><br>
+<a href="https://instagram.com/fr_d4k5h" target="_blank">Open Instagram</a>
+</div></section><footer>Trendy Store ©</footer><script>
+
+window.onload=function(){
+setTimeout(()=>{document.getElementById('loader').style.display='none'},1500)
+}
+
+function order(product){
+const section=document.getElementById('order')
+section.scrollIntoView({behavior:'smooth'})
+
+document.getElementById('selectedProduct').innerText="Selected Service: "+product
+
+const slots=Math.floor(Math.random()*3)+1
+
+document.getElementById('urgency').innerText="Only "+slots+" slots left today!"
+}
+
+/* fake live orders */
+const names=["Rohit","Aryan","Sahil","Kunal","Aditya","Toxic","GamerX","Dev","Harsh","Ninja"]
+const products=["Thumbnail","Logo","Banner","Video Edit","Headshot Config","Sensitivity"]
+
+function showPopup(){
+const popup=document.getElementById('liveOrder')
+const name=names[Math.floor(Math.random()*names.length)]
+const product=products[Math.floor(Math.random()*products.length)]
+popup.innerText=name+" just ordered "+product
+popup.style.display="block"
+setTimeout(()=>{popup.style.display="none"},4000)
+}
+setInterval(showPopup,7000)
+
+/* particles */
+const canvas=document.getElementById('particles')
+const ctx=canvas.getContext('2d')
+canvas.width=window.innerWidth
+canvas.height=window.innerHeight
+
+let particles=[]
+for(let i=0;i<80;i++){
+particles.push({x:Math.random()*canvas.width,y:Math.random()*canvas.height,vx:(Math.random()-0.5),vy:(Math.random()-0.5)})
+}
+
+function animate(){
+ctx.clearRect(0,0,canvas.width,canvas.height)
+ctx.fillStyle="#00ff9c"
+
+particles.forEach(p=>{
+p.x+=p.vx
+p.y+=p.vy
+
+if(p.x<0||p.x>canvas.width)p.vx*=-1
+if(p.y<0||p.y>canvas.height)p.vy*=-1
+
+ctx.beginPath()
+ctx.arc(p.x,p.y,2,0,Math.PI*2)
+ctx.fill()
+})
+
+requestAnimationFrame(animate)
+}
+
+animate()
+
+</script></body>
+</html>
